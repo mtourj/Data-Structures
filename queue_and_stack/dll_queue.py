@@ -8,7 +8,7 @@ class Queue:
         self.size = 0
         # Why is our DLL a good choice to store our elements?
         # Because it is very efficient when it comes to adding
-        # and removing items from either end of the array
+        # and removing items from either end of the list
         self.storage = DoublyLinkedList()
 
     def enqueue(self, value):
