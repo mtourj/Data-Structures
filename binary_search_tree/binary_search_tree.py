@@ -1,5 +1,5 @@
-# from dll_stack import Stack
-# from dll_queue import Queue
+from dll_stack import Stack
+from dll_queue import Queue
 import sys
 # sys.path.append('../queue_and_stack')
 
@@ -63,25 +63,67 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            node.left.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            node.right.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # Create queue
+        queue = Queue()
+        # Add node to queue
+        queue.enqueue(node)
+
+        while queue.len() > 0:
+            target = queue.dequeue()
+            print(target.value)
+            if target.right:
+                queue.enqueue(target.right)
+            if target.left:
+                queue.enqueue(target.left)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # Create stack
+        stack = Stack()
+        # Add node to stack
+        stack.push(node)
+
+        while stack.len() > 0:
+            target = stack.pop()
+            print(target.value)
+            if target.right:
+                stack.push(target.right)
+            if target.left:
+                stack.push(target.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
+
     def pre_order_dft(self, node):
-        pass
+        # Create stack
+        stack = Stack()
+        # Add node to stack
+        stack.push(node)
+
+        while stack.len() > 0:
+            target = stack.pop()
+            print(target.value)
+            if target.right:
+                stack.push(target.right)
+            if target.left:
+                stack.push(target.left)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node.left:
+            self.post_order_dft(node.left)
+        if node.right:
+            self.post_order_dft(node.right)
+        print(node.value)
